@@ -4,13 +4,7 @@ import { Panel } from 'react-bootstrap';
 class GeneratePayroll extends Component {
 
     state = {
-        loading: false,
-        files: [],
         error: ''
-    }
-
-    componentDidMount() {
-
     }
 
     render() {
