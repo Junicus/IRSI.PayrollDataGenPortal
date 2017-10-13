@@ -77,18 +77,16 @@ class ExistingPayroll extends Component {
     render() {
         return (
             <Panel header="Existing Payroll">
-                <div>
-                    {this.state.error && <Alert bsStyle="danger">{this.state.error}</Alert>}
-                    <form onSubmit={this.handleSubmit}>
-                        {this.state.loading && <div>Loading...</div>}
-                        {this.createCheckboxes()}
-                        <Button bsStyle="primary" type="submit"
-                            disabled={this.state.items &&
-                                this.state.items.every((e) => (!e.checked))}>
-                            Download
+                {this.state.error && <Alert bsStyle="danger">{this.state.error}</Alert>}
+                <form onSubmit={this.handleSubmit}>
+                    {this.state.loading && <div>Loading...</div>}
+                    {this.createCheckboxes()}
+                    <Button bsStyle="primary" type="submit"
+                        disabled={this.state.items &&
+                            this.state.items.every((e) => (!e.checked))}>
+                        {'Download'}
                     </Button>
-                    </form>
-                </div>
+                </form>
             </Panel>
         );
     }
