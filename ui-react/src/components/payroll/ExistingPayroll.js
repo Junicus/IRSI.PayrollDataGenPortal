@@ -62,7 +62,6 @@ class ExistingPayroll extends Component {
         const query = querystring.stringify({
             files: selectedItems.join(',')
         });
-        //console.log(`${process.env.REACT_APP_API_BASE_URL}/api/payroll/getFiles?${query}`);
         window.open(`${process.env.REACT_APP_API_BASE_URL}/api/payroll/getFiles?${query}`);
     }
 

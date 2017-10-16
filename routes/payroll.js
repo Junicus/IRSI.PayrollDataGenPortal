@@ -25,27 +25,28 @@ router.get('/getFiles', function (req, res) {
   res.zip(zipOptions, 'payroll.zip');
 });
 
-router.post('/', function (req, res) {
-  const { startDate, endDate } = req.body;
+router.get('/', function (req, res) {
+  const { startDate, endDate } = req.query;
+  console.log("Date params: ", startDate, endDate);
   var headers = {
     'User-Agent': 'Super Agent/0.0.1',
     'Content-Type': 'application/json'
   };
 
   var options = {
-    url: `${process.env.BASE_WCF_URL}/payrollGen`,
-    method: 'POST',
+    url: `${process.env.BASE_WCF_URL}/payrollGen?startDate=${startDate}&endDate=${endDate}`,
     headers: headers,
-    body: JSON.stringify({ startDate: startDate, endDate: endDate })
   };
 
   console.log(options);
 
-  request.post(options, function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-      res.send(body);
+  request.get(options, function (error, response, body) {
+    console.log(response);
+    if (error) {
+      res.error(error);
     } else {
-      res.sendStatus(500);
+      res.statusCode = response.statusCode;
+      res.send(body);
     }
   });
 });
