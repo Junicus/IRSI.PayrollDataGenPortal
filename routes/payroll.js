@@ -30,7 +30,7 @@ router.get('/', function (req, res) {
   console.log("Date params: ", startDate, endDate);
   var headers = {
     'User-Agent': 'Super Agent/0.0.1',
-    'Content-Type': 'application/json'
+    'Accept': 'application/json'
   };
 
   var options = {
@@ -44,9 +44,11 @@ router.get('/', function (req, res) {
     console.log(response);
     if (error) {
       res.error(error);
+    } else if (response.statusCode === 200) {
+      res.json(JSON.parse(body));
     } else {
-      res.statusCode = response.statusCode;
-      res.send(body);
+      res.statusMessage = response.statusMessage;
+      res.status(response.statusCode).end();
     }
   });
 });

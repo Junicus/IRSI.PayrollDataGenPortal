@@ -38,6 +38,10 @@ class GeneratePayroll extends Component {
             },
         }).then((res) => {
             if (res.status === 200) {
+                this.setState({
+                    ...this.state,
+                    error: ''
+                });
                 return res.json();
             } else {
                 this.setState({
@@ -47,10 +51,8 @@ class GeneratePayroll extends Component {
                 throw Error(res.statusText);
             }
         }).then((json) => {
-            console.log(json);
             const result = json.PayrollGenPostResult;
-            console.log(result);
-            /*var blob = new Blob([json], { type: 'application/json' });
+            var blob = new Blob([result], { type: 'application/json' });
             if (window.navigator.msSaveOrOpenBlob)
                 window.navigator.msSaveBlob(blob, "payroll.xml");
             else {
@@ -60,7 +62,7 @@ class GeneratePayroll extends Component {
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
-            }*/
+            }
         }).catch(error => console.log(error));
     }
 

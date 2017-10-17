@@ -7,8 +7,8 @@ import ExistingPayroll from '../components/payroll/ExistingPayroll';
 class App extends Component {
     render() {
         return (
-            <div>
-                <PageHeader>Payroll</PageHeader>
+            <div style={{ padding: 5 }}>
+                <PageHeader>Payroll Tools</PageHeader>
                 <GeneratePayroll />
                 <ExistingPayroll />
             </div>
