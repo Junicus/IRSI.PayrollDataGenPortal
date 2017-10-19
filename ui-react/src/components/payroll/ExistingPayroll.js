@@ -49,7 +49,7 @@ class ExistingPayroll extends Component {
             ...this.state,
             items: this.state.items.map((e) => {
                 if (e.name === label) {
-                    e.checked = !e.checked;
+                    return Object.assign({}, e, { checked: !e.checked });
                 }
                 return e;
             })
